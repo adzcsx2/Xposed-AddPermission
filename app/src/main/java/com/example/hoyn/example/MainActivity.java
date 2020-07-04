@@ -49,25 +49,13 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                requestPermission(MainActivity.this);
                 requestPermissionsSuccess();
-//                Acp.getInstance(MainActivity.this).request(new AcpOptions.Builder()
-//                                .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE
-//                                        , Manifest.permission.READ_PHONE_STATE)
-//                                .build(),
-//                        new AcpListener() {
-//                            @Override
-//                            public void onGranted() {
-//                                String sdcard_path = Environment.getExternalStorageDirectory().getAbsolutePath();
-//                                writeFileData(sdcard_path + File.separator+"x86"+ File.separator+"asddd.txt","你好");
-//                            }
-//
-//                            @Override
-//                            public void onDenied(List<String> permissions) {
-//                            }
-//                        });
             }
         });
+    }
+    public void requestPermissionsSuccess() {
+        String sdcard_path = Environment.getExternalStorageDirectory().getAbsolutePath();
+        writeFileData(sdcard_path + File.separator+"x86"+ File.separator+"asddd.txt","你好");
     }
 
     public  void showToast(final String content){
@@ -80,16 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void requestPermissionsSuccess() {
-        String sdcard_path = Environment.getExternalStorageDirectory().getAbsolutePath();
-        writeFileData(sdcard_path + File.separator+"x86"+ File.separator+"asddd.txt","你好");
-
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
 
     public void writeFileData(String filename, String content){
         try {
@@ -121,13 +99,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return imei;
     }
-    private void requestPermission(Activity activity) {
 
-        //需要的权限
-        String permission = Manifest.permission.WRITE_EXTERNAL_STORAGE;
-        //检测是否没有该权限
-        if (ContextCompat.checkSelfPermission(activity,permission)!= PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity,new String[]{permission},100);
-        }
-    }
 }

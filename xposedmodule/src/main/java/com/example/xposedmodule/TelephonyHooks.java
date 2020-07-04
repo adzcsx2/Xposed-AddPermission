@@ -103,7 +103,9 @@ public class TelephonyHooks implements IXposedHookLoadPackage {
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     super.beforeHookedMethod(param);
                     XposedBridge.log("点击了之前");
+                    //获取按钮对象
                     v = (View) param.args[0];
+                    //获取权限
                     requestPermission(activity);
                 }
             });
